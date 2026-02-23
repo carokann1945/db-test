@@ -3,6 +3,8 @@ import { getUserOrRedirect } from '@/lib/auth';
 import { createTodo, deleteTodo, setTodoDone, updateTodoTitle } from './actions';
 import { signOut } from '@/app/auth/actions';
 
+export const dynamic = 'force-dynamic';
+
 export default async function TodosPage() {
   const { userId, claims } = await getUserOrRedirect('/todos');
 

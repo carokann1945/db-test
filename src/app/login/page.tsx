@@ -1,9 +1,10 @@
 'use client';
 
+import { Suspense } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useSearchParams } from 'next/navigation';
 
-export default function LoginPage() {
+function LoginContent() {
   const supabase = createClient();
   const searchParams = useSearchParams();
   const next = searchParams.get('next') ?? '/todos';
@@ -14,7 +15,7 @@ export default function LoginPage() {
 
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo }, // 이 URL이 Supabase Redirect allow list에 있어야 함 :contentReference[oaicite:15]{index=15}
+      options: { redirectTo },
     });
 
     if (error) {
@@ -28,5 +29,13 @@ export default function LoginPage() {
       <h1>Login</h1>
       <button onClick={signInWithGoogle}>Google로 로그인</button>
     </main>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div style={{ padding: 24 }}>로딩 중...</div>}>
+      <LoginContent />
+    </Suspense>
   );
 }
