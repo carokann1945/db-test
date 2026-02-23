@@ -6,4 +6,6 @@ prisma, supabase 연결하기, OAuth, CRUD까지 최종 테스트
 
 carokann1945 org -> test
 
-# google id
+# google OAuth 클라이언트 ID
+
+test
