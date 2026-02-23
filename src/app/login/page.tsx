@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation';
 export default function LoginPage() {
   const supabase = createClient();
   const searchParams = useSearchParams();
-  const next = searchParams.get('next') ?? '/';
+  const next = searchParams.get('next') ?? '/todos';
 
   const signInWithGoogle = async () => {
     const origin = window.location.origin;
